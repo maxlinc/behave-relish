@@ -16,9 +16,9 @@ def impl(context):
     if not hasattr(context, 'text'):
       context.text = katacontroller.KataController.createCode()
   assert hasattr(context, 'text') == True, 'No code'
-  print runnerfactory.RunnerFactory.create('python').run(context.text)
+  context.output = runnerfactory.RunnerFactory.create('python').run(context.text)
+  print context.output
 
 @then('It should succeed')
 def impl(context):
   assert True
-

@@ -7,8 +7,6 @@ class PythonRunner(object):
   @staticmethod
   def run(script):
     p = subprocess.Popen(['python'], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-    # import code
-    # code.interact(local = locals())
     return p.communicate(script)[0]
 
   # def prepare(self):

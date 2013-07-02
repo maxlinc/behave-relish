@@ -5,14 +5,15 @@ import glob
 import os
 
 languages = ['java', 'cs', 'node', 'php', 'python', 'ruby', 'go']
-tests = glob.glob('templates/*.feature.mustache')
+tests = glob.glob('templates/*/*.feature.mustache')
 for language in languages:
   for test in tests:
-    test_name = os.path.splitext(os.path.basename(test))[0]
+    test_name = test.replace('templates/', '').replace('.mustache', '')
     g = generator.Generator(language, test_name)
     template = open(test, 'r').read()
     renderer = pystache.Renderer(escape = lambda u: u)
     generated_test = renderer.render(template, g)
+    # test_path = test.replace('templates/', '').replace('.mustache', '')
     output_file = os.path.join('features', language, test_name)
     if not os.path.exists(os.path.dirname(output_file)):
       os.makedirs(os.path.dirname(output_file))
