@@ -1,0 +1,10 @@
+*~
+.DS_Store
+*.swp
+*.pyc
+*.pyo
+*.egg*
+.tox
+.coveralls.yml
+*.lock
+features/*.feature

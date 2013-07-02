@@ -1,0 +1,10 @@
+Feature: Multiline strings
+  
+  {{my_tags}}
+  Scenario: Multiline strings containing code
+    Given I have a password available
+    When I execute the following code:
+"""{{language}}
+{{solution}}
+"""
+    Then it should succeed
