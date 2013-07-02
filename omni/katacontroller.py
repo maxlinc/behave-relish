@@ -11,6 +11,10 @@ class KataController(object):
     tempfile = tempfile.NamedTemporaryFile(suffix=".tmp")
     args.append(tempfile.name)
     subprocess.call(args)
+    code = open(tempfile.name, 'r').read()
+    tempfile.close
+    os.unlink(tempfile.name)
+    return code
 
   # def prepare(self):
     # virtualenv, pip, whatever
