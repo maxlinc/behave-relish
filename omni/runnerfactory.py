@@ -1,5 +1,6 @@
 from omni import rubyrunner
 from omni import pythonrunner
+from omni import noderunner
 
 class RunnerFactory(object):
   @staticmethod
@@ -7,7 +8,7 @@ class RunnerFactory(object):
     map = {
       'java': None,
       'cs': None,
-      'node': None,
+      'node': noderunner.NodeRunner,
       'php': None,
       'python': pythonrunner.PythonRunner,
       'ruby': rubyrunner.RubyRunner,

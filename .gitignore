@@ -8,3 +8,4 @@
 .coveralls.yml
 *.lock
 features/*.feature
+node_modules/
