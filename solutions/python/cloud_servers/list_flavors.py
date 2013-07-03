@@ -19,8 +19,7 @@
 import os
 import pyrax
 
-creds_file = os.path.expanduser("~/.rackspace_cloud_credentials")
-pyrax.set_credential_file(creds_file)
+pyrax.set_credentials(os.environ['OS_USERNAME'], os.environ['OS_PASSWORD'])
 cs = pyrax.cloudservers
 
 flvs = cs.flavors.list()
