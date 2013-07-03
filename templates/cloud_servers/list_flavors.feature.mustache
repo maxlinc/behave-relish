@@ -2,7 +2,9 @@ Feature: List server flavors
   The following code example shows how to list flavors for the {{language}} SDK.
   See also [Listing Flavors](http://docs.openstack.org/api/openstack-compute/programmer/content/listing-flavors.html) in the OpenStack documentation.
   
-  {{my_tags}}
+  {{#my_tags}}
+  {{.}}
+  {{/my_tags}}
   Scenario: List flavors ({{language}})
     Given I am setup to run example code for {{language}}
     When I execute the following code:

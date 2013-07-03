@@ -9,9 +9,9 @@ class Generator(object):
 
   def my_tags(self):
     if os.access(self.solution_file, os.R_OK):
-      return '@' + self.language
+      return ['@' + self.language]
     else:
-      return '@wip, @' + self.language
+      return ['@wip', '@' + self.language]
 
   def solution(self):
     if not os.access(self.solution_file, os.R_OK):

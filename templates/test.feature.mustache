@@ -1,6 +1,8 @@
 Feature: Multiline strings
   
-  {{my_tags}}
+  {{#my_tags}}
+  {{.}}
+  {{/mytags}}
   Scenario: Multiline strings containing code
     Given I have a password available
     When I execute the following code:
