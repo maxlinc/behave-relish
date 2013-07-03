@@ -2,24 +2,23 @@ import sys
 import os
 import tempfile
 import subprocess
+from behave import *
+from omni import runnerfactory
+from omni import katacontroller
 
-@given(u'I have a password available')
+@given('I have a password available')
 def impl(context):
     assert True
 
-@when(u'I execute the following code')
+@when('I execute the following code')
 def impl(context):
-  # temp = tempfile.NamedTemporaryFile(delete=False)
-  # temp.write(context.text)
-  # temp.flush()
-  # print 'Executing ' + temp.name
-  # temp.close()
-  p = subprocess.Popen(['python'], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-  print p.communicate(context.text)[0]
-  # os.unlink(temp.name)
-  print "Max"
+  if os.environ.get('KATA_MODE') == 'true':
+    if not hasattr(context, 'text'):
+      context.text = katacontroller.KataController.createCode()
+  assert hasattr(context, 'text') == True, 'No code'
+  context.output = runnerfactory.RunnerFactory.create(context.language).run(context.text)
+  print context.output
 
-@then(u'It should succeed')
+@then('It should succeed')
 def impl(context):
   assert True
-

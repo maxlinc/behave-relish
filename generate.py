@@ -3,6 +3,10 @@ from omni import generator
 import pystache
 import glob
 import os
+import shutil
+
+shutil.rmtree('features/')
+shutil.copytree('templates/steps/', 'features/steps/')
 
 languages = ['java', 'cs', 'node', 'php', 'python', 'ruby', 'go']
 tests = glob.glob('templates/*/*.feature.mustache')
@@ -14,7 +18,8 @@ for language in languages:
     renderer = pystache.Renderer(escape = lambda u: u)
     generated_test = renderer.render(template, g)
     # test_path = test.replace('templates/', '').replace('.mustache', '')
-    output_file = os.path.join('features', language, test_name)
+    output_file = os.path.join('features', test_name)
+    output_file = output_file.replace('.feature', '_' + language + '.feature')
     if not os.path.exists(os.path.dirname(output_file)):
       os.makedirs(os.path.dirname(output_file))
     output = open(output_file, 'w')
@@ -22,4 +27,3 @@ for language in languages:
     output.flush
     output.close
     print output_file + " generated!"
-

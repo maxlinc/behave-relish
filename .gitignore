@@ -7,5 +7,6 @@
 .tox
 .coveralls.yml
 *.lock
-features/*.feature
+features/
 node_modules/
+reports/

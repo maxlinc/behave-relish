@@ -5,7 +5,7 @@ class Generator(object):
     self.language = language
     self.test_file = test_file
     self.test_name = os.path.splitext(test_file)[0]
-    self.solution_file = os.path.join('solutions', language, self.test_name + self.extension())
+    self.solution_file = os.path.join('solutions', self.test_name + self.extension())
 
   def my_tags(self):
     if os.access(self.solution_file, os.R_OK):
@@ -33,10 +33,6 @@ class Generator(object):
       'go': '.go'
     }
     return extensions[self.language]
-
-  def solution_file(self):
-    test = os.path.splitext(self.test_name)[0]
-    solution_file = os.path.join('solutions', self.language, test + self.extension())
 
   def expected(self):
     return """
