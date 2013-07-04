@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 class Generator(object):
   def __init__(self, language, test_file):
@@ -33,6 +34,13 @@ class Generator(object):
       'go': '.go'
     }
     return extensions[self.language]
+
+  def kata(self):
+    args = os.environ["EDITOR"].split()
+    args.append(self.solution_file)
+    subprocess.call(args)
+    code = open(self.solution_file, 'r').read()
+    return code
 
   def expected(self):
     return """

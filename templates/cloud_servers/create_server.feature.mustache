@@ -1,0 +1,14 @@
+Feature: Create server ({{language}})
+  The following code example shows how to list flavors for the {{language}} SDK.
+  See also [Listing Flavors](http://docs.openstack.org/api/openstack-compute/programmer/content/listing-flavors.html) in the OpenStack documentation.
+  
+  {{#my_tags}}
+  {{.}}
+  {{/my_tags}}
+  Scenario: Create server ({{language}})
+    Given I am setup to run example code for {{language}}
+    When I execute the following code:
+"""{{language}}
+{{solution}}
+"""
+    Then I should have created an "Ubuntu" server with 512MB of RAM
