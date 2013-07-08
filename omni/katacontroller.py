@@ -16,5 +16,9 @@ class KataController(object):
     os.unlink(tempfile.name)
     return code
 
+  @staticmethod
+  def interactive():
+    shell = 'groovysh'
+    subprocess.call(args)
   # def prepare(self):
     # virtualenv, pip, whatever

@@ -19,8 +19,14 @@ def impl(context):
       test_name = test_name.replace('_' + context.language, '')
       g = generator.Generator(context.language, test_name)
       g.kata()
-  assert hasattr(context, 'text') == True, 'No code'
-  context.output = runnerfactory.RunnerFactory.create(context.language).run(context.text)
+  if os.environ.get('KATA_MODE') == 'shell':
+    p = subprocess.Popen(['groovysh'], stdout=subprocess.PIPE)
+    p.wait()
+    context.output = p.stdout.read()
+  else:
+    assert hasattr(context, 'text') == True, 'No code'
+    context.output = runnerfactory.RunnerFactory.create(context.language).run(context.text)
+  print context.output
   print context.output
 
 @then('It should succeed')
